@@ -11,11 +11,11 @@ import path from "path";
   CDN.use("/content", express.static(path.join(__dirname + "/assets")));
 
   CDN.get("/", (req, res) => {
-    res.send("CDN works!");
+    res.sendFile(path.join(__dirname + "/pages/index.html"));
   });
 
   CDN.use("/*", (req, res) => {
-    res.send("File not found!");
+    res.sendFile(path.join(__dirname + "/pages/404.html"));
   });
 
   const httpServer = http.createServer(CDN);
