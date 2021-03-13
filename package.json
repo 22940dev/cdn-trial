@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "rm -rf ./prod",
     "build": "tsc",
+    "postbuild": "cp -r ./src/assets ./prod/assets",
     "lint": "eslint src",
     "start": "node -r dotenv/config prod/index.js",
     "test": "echo 'No tests yet'"
