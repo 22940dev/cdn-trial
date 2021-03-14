@@ -3,18 +3,19 @@ import { readFile } from "fs/promises";
 import http from "http";
 import https from "https";
 import path from "path";
+import { getFilesRoute } from "./modules/getFiles";
+
+export const CDN = express();
 (async () => {
-  const CDN = express();
-
-  console.log(__dirname);
-
   CDN.use("/content", express.static(path.join(__dirname + "/assets")));
 
-  CDN.get("/", (req, res) => {
+  CDN.get("/", (_, res) => {
     res.sendFile(path.join(__dirname + "/pages/index.html"));
   });
 
-  CDN.use("/*", (req, res) => {
+  CDN.get("/files", getFilesRoute);
+
+  CDN.use("/*", (_, res) => {
     res.sendFile(path.join(__dirname + "/pages/404.html"));
   });
 
