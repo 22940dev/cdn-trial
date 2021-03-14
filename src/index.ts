@@ -16,6 +16,16 @@ const limiter = rateLimit({
 (async () => {
   CDN.use(limiter);
 
+  if (process.env.NODE_ENV === "production") {
+    CDN.get("*", (req, res, next) => {
+      if (req.secure) {
+        next();
+      } else {
+        res.redirect(`https://` + req.headers.host + req.url);
+      }
+    });
+  }
+
   CDN.use("/content", express.static(path.join(__dirname + "/assets")));
 
   CDN.get("/", (_, res) => {
