@@ -1,20 +1,30 @@
 import express from "express";
+import rateLimit from "express-rate-limit";
 import { readFile } from "fs/promises";
 import http from "http";
 import https from "https";
 import path from "path";
-(async () => {
-  const CDN = express();
+import { getFilesRoute } from "./modules/getFiles";
 
-  console.log(__dirname);
+export const CDN = express();
+
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 60,
+  message: "Too many requests to the CDN. Please try again later.",
+});
+(async () => {
+  CDN.use(limiter);
 
   CDN.use("/content", express.static(path.join(__dirname + "/assets")));
 
-  CDN.get("/", (req, res) => {
+  CDN.get("/", (_, res) => {
     res.sendFile(path.join(__dirname + "/pages/index.html"));
   });
 
-  CDN.use("/*", (req, res) => {
+  CDN.get("/files", getFilesRoute);
+
+  CDN.use("/*", (_, res) => {
     res.sendFile(path.join(__dirname + "/pages/404.html"));
   });
 
