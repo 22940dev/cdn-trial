@@ -4,7 +4,7 @@ A private CDN for my own image hosting needs.
 
 ## Live Version
 
-This page is currently deployed. [View the live website.](https://cdn.nhcarrigan.com) You won't find much there, though.
+This page is currently deployed. [View the live website.](https://cdn.nhcarrigan.com) You won't find much there, though. For instructions on using the CDN, view our [usage documentation](./USAGE.md).
 
 ## Feedback and Bugs
 
