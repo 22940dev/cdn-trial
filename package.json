@@ -1,6 +1,6 @@
 {
   "name": "cdn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A CDN for my personal use.",
   "main": "./prod/index.js",
   "scripts": {
