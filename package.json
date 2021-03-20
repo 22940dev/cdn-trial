@@ -3,6 +3,10 @@
   "version": "1.1.0",
   "description": "A CDN for my personal use.",
   "main": "./prod/index.js",
+  "engines": {
+    "node": "^15.10.0",
+    "npm": "^7.6.0"
+  },
   "scripts": {
     "prebuild": "rm -rf ./prod",
     "build": "tsc",
