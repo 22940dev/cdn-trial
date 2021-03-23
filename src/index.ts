@@ -5,6 +5,7 @@ import http from "http";
 import https from "https";
 import path from "path";
 import { getFilesRoute } from "./modules/getFiles";
+import cors from "cors";
 
 export const CDN = express();
 
@@ -25,6 +26,12 @@ const limiter = rateLimit({
       }
     });
   }
+
+  CDN.use(
+    cors({
+      origin: "*",
+    })
+  );
 
   CDN.use("/content", express.static(path.join(__dirname + "/assets")));
 
