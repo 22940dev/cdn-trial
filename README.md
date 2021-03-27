@@ -2,6 +2,12 @@
 
 A private CDN for my own image hosting needs.
 
+![](https://img.shields.io/codeclimate/maintainability/nhcarrigan/cdn)
+![](https://img.shields.io/codeclimate/issues/nhcarrigan/cdn)
+![](https://img.shields.io/codeclimate/tech-debt/nhcarrigan/cdn)
+![](https://img.shields.io/lgtm/alerts/github/nhcarrigan/cdn)
+![](https://img.shields.io/lgtm/grade/javascript/github/nhcarrigan/cdn)
+
 ## Live Version
 
 This page is currently deployed. [View the live website.](https://cdn.nhcarrigan.com) You won't find much there, though. For instructions on using the CDN, view our [usage documentation](./USAGE.md).
