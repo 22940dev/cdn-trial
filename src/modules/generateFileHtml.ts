@@ -1,10 +1,13 @@
-export const generateHtml = (fileList: string[]): string => {
-  const baseHref = process.env.BASE_PATH || "http://localhost:8080";
-  const htmlList = fileList
-    .map((el) => `<li><a href=${baseHref + el}>${el}</a></li>`)
-    .join("");
+import { errorHandler } from "../utils/errorHandler";
 
-  return `
+export const generateHtml = (fileList: string[]): string => {
+  try {
+    const baseHref = process.env.BASE_PATH || "http://localhost:8080";
+    const htmlList = fileList
+      .map((el) => `<li><a href=${baseHref + el}>${el}</a></li>`)
+      .join("");
+
+    return `
   <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -43,4 +46,8 @@ export const generateHtml = (fileList: string[]): string => {
     </body>
   </html>
       `;
+  } catch (error) {
+    errorHandler("generating file page", error);
+    return "Error! Please contact administrator!";
+  }
 };
