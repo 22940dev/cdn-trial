@@ -6,6 +6,8 @@ import https from "https";
 import path from "path";
 import { getFilesRoute } from "./modules/getFiles";
 import cors from "cors";
+import * as Sentry from "@sentry/node";
+import { RewriteFrames } from "@sentry/integrations";
 
 export const CDN = express();
 
@@ -14,6 +16,17 @@ const limiter = rateLimit({
   max: 60,
   message: "Too many requests to the CDN. Please try again later.",
 });
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  tracesSampleRate: 1.0,
+  integrations: [
+    new RewriteFrames({
+      root: global.__dirname,
+    }),
+  ],
+});
+
 (async () => {
   CDN.use(limiter);
 
