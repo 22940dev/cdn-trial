@@ -60,7 +60,7 @@ Sentry.init({
 
   const httpServer = http.createServer(CDN);
 
-  const httpPort = process.env.NODE_ENV === "production" ? 80 : 8080;
+  const httpPort = 1080;
 
   httpServer.listen(httpPort, () => {
     console.log(`http server listening on port ${httpPort}`);
@@ -87,8 +87,8 @@ Sentry.init({
     };
 
     const httpsServer = https.createServer(credentials, CDN);
-    httpsServer.listen(443, () => {
-      console.log("https server listening on port 443");
+    httpsServer.listen(1443, () => {
+      console.log("https server listening on port 1443");
     });
   }
 })();
